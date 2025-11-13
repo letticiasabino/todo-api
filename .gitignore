@@ -1,0 +1,21 @@
+# Variáveis de ambiente
+.env
+
+# Banco de dados
+*.sqlite
+*.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
