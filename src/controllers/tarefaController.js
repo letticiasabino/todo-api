@@ -4,12 +4,14 @@ class TarefaController {
     // Criar uma nova tarefa
     async criarTarefa(req, res) {
         try {
+            console.log('📥 Requisição recebida para criar tarefa:', req.body);
             const { titulo, descricao, status } = req.body;
 
             // Validação básica
-            if (!titulo || !titulo.trim() === '') {
+            if (!titulo || titulo.trim() === '') {
+                console.log('❌ Validação falhou: título vazio');
                 return res.status(400).json({
-                    erro: 'Dados inváldos',
+                    erro: 'Dados inválidos',
                     mensagem: 'O título é obrigatório e não pode estar vazio.'
                 });
             }
@@ -18,16 +20,22 @@ class TarefaController {
             const statusPermitidos = ['a fazer', 'em andamento', 'concluída'];
             if (status && !statusPermitidos.includes(status)) {
                 return res.status(400).json({ 
-                    erro: 'Senha inválida',
+                    erro: 'Status inválido',
                     mensagem: `O status deve ser um dos seguintes: ${statusPermitidos.join(', ')}.`
                 });
             }
 
-            const tarefa = await Tarefa.create({
+            const dadosTarefa = {
                 titulo: titulo.trim(),
                 descricao: descricao ? descricao.trim() : '',
-                'status': status || 'a fazer'
-            })
+                status: status || 'a fazer'
+            };
+            
+            console.log('💾 Criando tarefa com dados:', dadosTarefa);
+            
+            const tarefa = await Tarefa.create(dadosTarefa);
+            
+            console.log('✅ Tarefa criada com sucesso:', tarefa.toJSON());
 
             return res.status(201).json({
                 mensagem: 'Tarefa criada com sucesso',
@@ -35,7 +43,18 @@ class TarefaController {
             });
 
         } catch (error) {
-            console.error('Erro ao criar tarefa:', error);
+            console.error('❌ Erro ao criar tarefa:', error);
+            console.error('Stack:', error.stack);
+            
+            // Se for erro de validação do Sequelize, retornar mensagem mais amigável
+            if (error.name === 'SequelizeValidationError') {
+                const mensagens = error.errors.map(e => e.message).join(', ');
+                return res.status(400).json({
+                    erro: 'Erro de validação',
+                    mensagem: mensagens
+                });
+            }
+            
             return res.status(500).json({
                 erro: 'Erro ao criar tarefa',
                 mensagem: error.message
@@ -101,9 +120,9 @@ class TarefaController {
             }   
 
             // Validação do título
-            if (!titulo || !titulo.trim() === '') {
+            if (!titulo || titulo.trim() === '') {
                 return res.status(400).json({
-                    erro: 'Dados inváldos',
+                    erro: 'Dados inválidos',
                     mensagem: 'O título é obrigatório e não pode estar vazio.'
                 });
             }
@@ -192,7 +211,7 @@ class TarefaController {
       await tarefa.destroy();
 
       return res.status(200).json({
-        mensagem: 'Tarefa ID: ${id} deletada com sucesso!'
+        mensagem: `Tarefa ID: ${id} deletada com sucesso!`
       });
     } catch (error) {
       console.error('Erro ao deletar tarefa:', error);

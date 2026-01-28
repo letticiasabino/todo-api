@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Gerenciador de Tarefas</h1>
+            <p class="subtitle">Organize suas tarefas de forma simples e eficiente</p>
+        </header>
+
+        <main>
+            <!-- Formulário para criar nova tarefa -->
+            <section class="form-section">
+                <h2>Nova Tarefa</h2>
+                <form id="tarefaForm">
+                    <div class="form-group">
+                        <label for="titulo">Título *</label>
+                        <input 
+                            type="text" 
+                            id="titulo" 
+                            name="titulo" 
+                            placeholder="Digite o título da tarefa"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea 
+                            id="descricao" 
+                            name="descricao" 
+                            rows="3"
+                            placeholder="Digite a descrição da tarefa (opcional)"
+                        ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="a fazer">A Fazer</option>
+                            <option value="em andamento">Em Andamento</option>
+                            <option value="concluída">Concluída</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Criar Tarefa</button>
+                </form>
+            </section>
+
+            <!-- Filtros e busca -->
+            <section class="filters-section">
+                <div class="filters">
+                    <input 
+                        type="text" 
+                        id="buscaInput" 
+                        placeholder="🔍 Buscar tarefas..."
+                        class="search-input"
+                    >
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="todas">Todas</button>
+                        <button class="filter-btn" data-filter="a fazer">A Fazer</button>
+                        <button class="filter-btn" data-filter="em andamento">Em Andamento</button>
+                        <button class="filter-btn" data-filter="concluída">Concluídas</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lista de tarefas -->
+            <section class="tarefas-section">
+                <div class="section-header">
+                    <h2>Tarefas</h2>
+                    <span id="contadorTarefas" class="contador">0 tarefas</span>
+                </div>
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Carregando tarefas...</p>
+                </div>
+                <div id="mensagemErro" class="mensagem-erro" style="display: none;"></div>
+                <div id="listaTarefas" class="lista-tarefas">
+                    <!-- Tarefas serão inseridas aqui via JavaScript -->
+                </div>
+                <div id="semTarefas" class="sem-tarefas" style="display: none;">
+                    <p>📝 Nenhuma tarefa encontrada</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para editar tarefa -->
+    <div id="modalEditar" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Editar Tarefa</h2>
+                <button class="btn-close" id="fecharModal">&times;</button>
+            </div>
+            <form id="formEditar">
+                <input type="hidden" id="editarId">
+                <div class="form-group">
+                    <label for="editarTitulo">Título *</label>
+                    <input 
+                        type="text" 
+                        id="editarTitulo" 
+                        name="titulo" 
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="editarDescricao">Descrição</label>
+                    <textarea 
+                        id="editarDescricao" 
+                        name="descricao" 
+                        rows="3"
+                    ></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editarStatus">Status</label>
+                    <select id="editarStatus" name="status">
+                        <option value="a fazer">A Fazer</option>
+                        <option value="em andamento">Em Andamento</option>
+                        <option value="concluída">Concluída</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelarEdicao">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "todo-frontend",
+  "version": "1.0.0",
+  "description": "Frontend para gerenciamento de tarefas",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "frontend",
+    "todo",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC"
+}

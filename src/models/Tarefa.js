@@ -16,8 +16,8 @@ module.exports = (sequelize) => {
           msg: 'O título não pode ser vazio'
         },
         len: {
-          args: [3, 255],
-          msg: 'O título deve ter entre 3 e 255 caracteres'
+          args: [1, 255],
+          msg: 'O título deve ter entre 1 e 255 caracteres'
         }
       }
     },

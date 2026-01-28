@@ -5,6 +5,20 @@ const { Tarefa } = require('./models');
 
 const app = express();
 
+// Middleware CORS - permite requisições do frontend
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    
+    // Responde a requisições OPTIONS (preflight)
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    
+    next();
+});
+
 // Middleware para parsear JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,29 +33,13 @@ app.get('/', (req, res) => {
             'GET /tarefas': 'Listar todas as tarefas',
             'GET /tarefas/:id': 'Buscar tarefa por ID',
             'PUT /tarefas/:id': 'Atualizar uma tarefa existente', 
-            'PATCH /tarefas/:id': 'Atualizar o status de uma tarefa',  
+            'PATCH /tarefas/:id/status': 'Atualizar o status de uma tarefa',  
             'DELETE /tarefas/:id': 'Excluir uma tarefa'
         }
     });
 });
 
-// Exemplo de rota para criar uma tarefa
-
-app.post('/tarefas', (req, res) => {
-    console.log(req.body);
-    res.status(201).json({ mensagem: 'Tarefa criada com sucesso!' });
-});
-
-// Exemplo de rota para deletar uma tarefa
-
-app.delete('/tarefas/:id', (req, res) => {
-    const { id } = req.params;
-    console.log(`Deletando tarefa com ID: ${id}`);
-    res.status(200).json({ mensagem: `Tarefa ID: ${id} deletada com sucesso!` });
-});
-
-// Rodas da API de tarefas
-
+// Rotas da API de tarefas
 app.use('/tarefas', tarefaRoutes);
 
 // Tratamento de rota não encontrada
