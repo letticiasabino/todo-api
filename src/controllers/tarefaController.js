@@ -69,7 +69,8 @@ class TarefaController {
                 order: [['created_at', 'DESC']]
             });
 
-            return res.status(200).json({total: tarefas.length,
+            return res.status(200).json({
+                total: tarefas.length,
                 tarefas
             });
         } catch (error) {

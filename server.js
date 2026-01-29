@@ -1,5 +1,5 @@
 require('dotenv').config();
-const e = require('express');
+const express = require('express');
 const app = require('./src/app');
 const { sequelize } = require('./src/models');
 
@@ -16,6 +16,10 @@ sequelize.sync({alter: true }).then(() => {
         console.log(`Servidor rodando na porta ${PORT}`);
         console.log(`Acesse: http://localhost:${PORT}`);
     });
+
+    app.use(cors()); 
+
+    app.use(express.json());
 
     // Tratamento de erro quando a porta está em uso
     server.on('error', (error) => {

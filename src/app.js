@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const tarefaRoutes = require('./routes/tarefaRoutes');
 const router = express.Router();
@@ -7,18 +8,7 @@ const { Tarefa } = require('./models');
 const app = express();
 
 // Middleware CORS - permite requisições do frontend
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    
-    // Responde a requisições OPTIONS (preflight)
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);
-    }
-    
-    next();
-});
+app.use(cors());
 
 // Middleware para parsear JSON
 app.use(express.json());
