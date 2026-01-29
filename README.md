@@ -124,7 +124,6 @@ Todos os endpoints estão prefixados com `/api`:
 | Método | Endpoint | Descrição | Body |
 | :--- | :--- | :--- | :--- |
 | `GET` | `/api/tarefas` | Lista todas as tarefas | - |
-| `GET` | `/api/tarefas/:id` | Retorna uma tarefa específica | - |
 | `POST` | `/api/tarefas` | Cria uma nova tarefa | `{ titulo, descricao?, prioridade? }` |
 | `PUT` | `/api/tarefas/:id` | Atualiza uma tarefa existente | `{ titulo?, descricao?, prioridade? }` |
 | `PATCH` | `/api/tarefas/:id/status` | Alterna status da tarefa | `{ completo: boolean }` |
