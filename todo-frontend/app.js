@@ -1,5 +1,5 @@
 // Configuração da API
-const API_BASE_URL = 'http://localhost:3001/tarefas';
+const API_BASE_URL = 'http://localhost:3001/api/tarefas';
 
 // Estado da aplicação
 let tarefas = [];
