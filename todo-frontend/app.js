@@ -1,5 +1,5 @@
 // Configuração da API
-const API_BASE_URL = 'http://localhost:3001/api/tarefas';
+const API_BASE_URL = 'https://todo-api-28fl.onrender.com/api/tarefas';
 
 // Estado da aplicação
 let tarefas = [];
