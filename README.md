@@ -1,7 +1,9 @@
 # 📝 ToDo App - Full Stack
 
 Uma aplicação completa de gerenciamento de tarefas desenvolvida com **Node.js**, **Express** e **Sequelize** no backend, com um **frontend HTML/CSS/JavaScript** integrado.
-O projeto permite criar, listar, atualizar, deletar e filtrar tarefas, tudo rodando em um único servidor na porta **3001**.
+O projeto permite criar, listar, atualizar, deletar e filtrar tarefas, tudo rodando em um único servidor.
+
+🌐 **Acesse agora:** https://todo-api-28fl.onrender.com
 
 ---
 

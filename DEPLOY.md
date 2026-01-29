@@ -1,10 +1,57 @@
 # 🚀 Guia de Deploy
 
-Instruções para hospedar a aplicação ToDo App no **Vercel** ou **GitHub Pages**.
+Instruções para hospedar a aplicação ToDo App no **Render** ✅, **Vercel** ou **GitHub Pages**.
 
 ---
 
-## 🎯 Opção 1: Deploy no Vercel (Recomendado) ⭐
+## ✅ Opção 1: Deploy no Render (Recomendado) ⭐ [CONCLUÍDO]
+
+O Render é ideal para este projeto porque:
+- ✅ Suporta Node.js/Express nativamente
+- ✅ Hospeda frontend + backend na mesma aplicação
+- ✅ Deploy automático via GitHub
+- ✅ Plano gratuito com recursos generosos
+- ✅ SSL automático
+- ✅ PostgreSQL gratuito (se precisar)
+- ✅ Sem cold starts como outras plataformas
+
+### 📍 Projeto já está online:
+
+**URL:** https://todo-api-28fl.onrender.com
+
+### Passo a Passo (Para referência futura):
+
+#### Passo 1: Criar conta no Render
+
+1. Acesse https://render.com
+2. Clique em "Sign up"
+3. Conecte sua conta GitHub
+
+#### Passo 2: Criar novo Web Service
+
+1. No dashboard, clique em "New +"
+2. Selecione "Web Service"
+3. Conecte seu repositório GitHub `todo-api`
+4. Preencha as informações:
+   - **Name:** todo-api
+   - **Runtime:** Node
+   - **Build Command:** `npm install`
+   - **Start Command:** `node server.js`
+
+#### Passo 3: Configurar variáveis de ambiente (opcional)
+
+Se usar PostgreSQL:
+- `DATABASE_URL`: sua URL PostgreSQL
+
+#### Passo 4: Deploy
+
+1. Clique em "Create Web Service"
+2. Aguarde o deploy (2-5 minutos)
+3. Copie a URL fornecida
+
+✅ **Seu app estará online automaticamente!**
+
+---
 
 O Vercel é ideal para este projeto porque:
 - ✅ Suporta Node.js/Express nativamente
@@ -230,34 +277,32 @@ app.use((req, res, next) => {
 
 ---
 
-## 📊 Comparação: Vercel vs GitHub Pages
+## 📊 Comparação: Render vs Vercel vs GitHub Pages
 
-| Recurso | Vercel | GitHub Pages |
-| --- | --- | --- |
-| Node.js/Backend | ✅ Sim | ❌ Não |
-| Frontend estático | ✅ Sim | ✅ Sim |
-| Banco de dados | ✅ Sim (externo) | ❌ Não |
-| Deploy automático | ✅ Sim | ✅ Sim |
-| Custo | Grátis | Grátis |
-| Configuração | Fácil | Média |
+| Recurso | Render | Vercel | GitHub Pages |
+| --- | --- | --- | --- |
+| Node.js/Backend | ✅ Sim | ✅ Sim | ❌ Não |
+| Frontend estático | ✅ Sim | ✅ Sim | ✅ Sim |
+| Banco de dados | ✅ Sim | ✅ Sim (externo) | ❌ Não |
+| Deploy automático | ✅ Sim | ✅ Sim | ✅ Sim |
+| Custo | Grátis | Grátis | Grátis |
+| Configuração | Fácil | Muito Fácil | Média |
+| **Status** | **✅ EM USO** | - | - |
 
 ---
 
 ## 🎯 Recomendação Final
 
-Para este projeto Full Stack, use **Vercel**:
+Para este projeto Full Stack, o **Render** é perfeito:
 
-1. Deploy simplificado
-2. Backend + Frontend juntos
-3. Auto-deploy via GitHub
-4. Sem configurações complexas
+1. ✅ Suporta Node.js + Express + Sequelize
+2. ✅ Deploy automático via GitHub
+3. ✅ Sem configurações complexas
+4. ✅ Já está em produção!
 
-**Deploy em 3 passos:**
-```bash
-# 1. Acesse vercel.com
-# 2. Conecte GitHub
-# 3. Selecione o repositório
-# Pronto! Deploy automático após cada push
+**Seu projeto está live em:**
+```
+https://todo-api-28fl.onrender.com
 ```
 
 ---
